@@ -56,9 +56,8 @@ html, body {
 /* 4. 重新覆盖按钮：默认藏在涂层下面（z-index 低于画布） */
 .reset-btn {
   position: absolute;
-  right: 20px;             /* 右下角定位 */
-  bottom: 40px;
-  bottom: 20px;
+  right: 50px;             /* 右上角定位，距离右边缘 50px */
+  top: 50px;               /* 距离上边缘 50px */
   z-index: 1;              /* 与底层图片同层，被画布盖住 */
   padding: 6px 16px;       /* 宽高各减半，面积为原来的四分之一 */
   font-size: 12px;
