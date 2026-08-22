@@ -57,6 +57,7 @@ html, body {
 .reset-btn {
   position: absolute;
   right: 20px;             /* 右下角定位 */
+  bottom: 40px;
   bottom: 20px;
   z-index: 1;              /* 与底层图片同层，被画布盖住 */
   padding: 6px 16px;       /* 宽高各减半，面积为原来的四分之一 */
