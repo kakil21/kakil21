@@ -1,0 +1,44 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<!-- 刮刮乐容器 -->
+<div class="scratch-container">
+  <!-- 底层：奖品图片 -->
+  <!-- 请确保 img/prize.jpg 存在，或者换成网络图片地址 -->
+  <img src="img/1.4.jpg" alt="奖品" id="prize-img" class="scratch-image">
+
+  <!-- 顶层：刮奖涂层 -->
+  <canvas id="scratch-canvas"></canvas>
+
+  <!-- 重新覆盖按钮：藏在涂层下，刮开该区域后才露出并可点击 -->
+  <button id="reset-btn" class="reset-btn">重新覆盖</button>
+</div>
+
+<!-- 提示文字 -->
+<p class="hint-text">按住鼠标或手指刮开涂层</p>
+
+<!-- 加载刮刮乐逻辑脚本 -->
+<script src="js/app.js"></script>
+
+</html>

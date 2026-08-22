@@ -1,0 +1,80 @@
+
+/* 0. 全屏基础：去掉默认边距，防止出现滚动条 */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 1. 容器：作为定位基准，铺满整个视口 */
+.scratch-container {
+  position: relative; /* 关键！子元素绝对定位的参考点 */
+  width: 100vw;       /* 全屏宽度 */
+  height: 100vh;      /* 全屏高度 */
+  margin: 0;
+  overflow: hidden;   /* 防止画笔画出边界 */
+}
+
+/* 2. 底层图片：铺满容器 */
+.scratch-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 保证图片不变形填满 */
+  z-index: 1;        /* 层级低，在下面 */
+}
+
+/* 3. 顶层画布：完全覆盖图片 */
+#scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;        /* 层级高，盖住图片 */
+  cursor: pointer;   /* 鼠标放上去变手型 */
+}
+
+.hint-text {
+  position: fixed;         /* 悬浮在视口底部，不占布局空间 */
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 20px;
+  color: #666;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  font-family: sans-serif;
+  pointer-events: none;    /* 不挡住刮奖操作 */
+  z-index: 3;
+}
+
+/* 4. 重新覆盖按钮：默认藏在涂层下面（z-index 低于画布） */
+.reset-btn {
+  position: absolute;
+  right: 20px;             /* 右下角定位 */
+  bottom: 20px;
+  z-index: 1;              /* 与底层图片同层，被画布盖住 */
+  padding: 6px 16px;       /* 宽高各减半，面积为原来的四分之一 */
+  font-size: 12px;
+  font-family: sans-serif;
+  color: #fff;
+  background: #ff7043;
+  border: none;
+  border-radius: 13px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background: #ff5722;
+}
+
+/* 刮开按钮区域后：提升到画布之上，变为可点击 */
+.reset-btn.visible {
+  z-index: 3;
+}
