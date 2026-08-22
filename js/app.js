@@ -3,6 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const ctx = canvas.getContext('2d');
   const container = document.querySelector('.scratch-container');
   const resetBtn = document.getElementById('reset-btn');
+  const prizeImg = document.getElementById('prize-img');
+
+  // 奖品图片循环列表（往 img 文件夹放新图片后，把文件名加进来即可）
+  const prizeImages = [
+    'img/1.4.jpg',
+    'img/OIP-C.jpg',
+    'img/OIP-C (3).jpg',
+    'img/OIP-C (4).jpg',
+    'img/OIP-C (5).jpg',
+    'img/R-C.jpg'
+  ];
+  let currentImgIndex = 0;
+
+  // 预加载全部图片，避免切换时闪白
+  prizeImages.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
 
   let isDrawing = false;
   let btnRevealed = false; // 按钮区域是否已被刮开
@@ -112,18 +130,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 7. 重新覆盖：重绘涂层，并把按钮重新藏起来
-  function resetScratch() {
+  // 7. 把按钮重新藏起来并重绘涂层（不切换图片，窗口缩放时使用）
+  function repaintCoating() {
     btnRevealed = false;
     resetBtn.classList.remove('visible');
     initCanvas();
+  }
+
+  // 8. 重新覆盖：切换到下一张奖品图片（最后一张后循环回第一张），再重绘涂层
+  function resetScratch() {
+    currentImgIndex = (currentImgIndex + 1) % prizeImages.length;
+    prizeImg.src = prizeImages[currentImgIndex];
+    repaintCoating();
   }
 
   // 初始化
   initCanvas();
 
   // 窗口大小变化时重新适配画布（全屏模式下拖动窗口边缘也能保持覆盖）
-  window.addEventListener('resize', resetScratch);
+  window.addEventListener('resize', repaintCoating);
 
   // 按钮点击：重新覆盖图层
   resetBtn.addEventListener('click', resetScratch);
