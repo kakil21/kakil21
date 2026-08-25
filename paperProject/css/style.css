@@ -22,12 +22,13 @@ body {
   object-fit: cover;
 }
 
-/* 刮刮乐涂层画布（顶层） */
+/* 刮刮乐涂层画布（最顶层，覆盖所有元素） */
 #scratchCanvas {
   position: absolute; top: 0; left: 0;
   width: 100vw; height: 100vh;
   cursor: pointer;
   touch-action: none;
+  z-index: 200;
 }
 
 /* ========== 右上角重新覆盖按钮 ========== */
