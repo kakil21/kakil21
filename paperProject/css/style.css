@@ -1,0 +1,86 @@
+/* ========== Reset & Base ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 100vw; height: 100vh; overflow: hidden;
+  background: #1a1a2e;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ========== 游戏容器 ========== */
+.game-wrapper {
+  position: relative;
+  width: 100vw; height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: #0f0f1a;
+}
+
+/* 图片画布（底层，显示壁纸） */
+#imageCanvas {
+  display: block;
+  width: 100vw; height: 100vh;
+  object-fit: cover;
+}
+
+/* 刮刮乐涂层画布（顶层） */
+#scratchCanvas {
+  position: absolute; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  cursor: pointer;
+  touch-action: none;
+}
+
+/* ========== 右上角重新覆盖按钮 ========== */
+#resetBtn {
+  position: absolute;
+  top: 16px; right: 16px;
+  width: 40px; height: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.15s;
+  z-index: 100;
+  user-select: none;
+}
+#resetBtn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.08);
+}
+#resetBtn:active { transform: scale(0.95); }
+
+/* ========== 图片序号提示 ========== */
+.image-counter {
+  position: absolute;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ========== 刮开进度提示 ========== */
+.progress-hint {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  pointer-events: none;
+  z-index: 50;
+  text-align: center;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.progress-hint.show { opacity: 1; }

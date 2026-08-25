@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>品牌名称 - 让一切更简单</title>
+  <style>
+    /* ========== Reset & Base ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #4f46e5;
+      --primary-dark: #4338ca;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --bg: #ffffff;
+      --bg-alt: #f8fafc;
+      --border: #e2e8f0;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: var(--text); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ========== Navbar ========== */
+    .navbar {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar .container {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .navbar .logo { font-size: 1.35rem; font-weight: 700; color: var(--primary); }
+    .navbar nav { display: flex; gap: 32px; }
+    .navbar nav a { font-size: .95rem; color: var(--text-light); transition: color .2s; }
+    .navbar nav a:hover { color: var(--primary); }
+    .btn {
+      display: inline-block; padding: 10px 22px; border-radius: 8px;
+      font-size: .95rem; font-weight: 600; cursor: pointer; border: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+    .btn-outline:hover { background: var(--primary); color: #fff; }
+
+    /* ========== Hero ========== */
+    .hero {
+      padding: 100px 0 80px;
+      text-align: center;
+      background: linear-gradient(170deg, #eef2ff 0%, #fff 60%);
+    }
+    .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+    .hero h1 span { color: var(--primary); }
+    .hero p { font-size: 1.15rem; color: var(--text-light); max-width: 580px; margin: 0 auto 36px; }
+    .hero .actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ========== Features ========== */
+    .features { padding: 80px 0; background: var(--bg-alt); }
+    .section-title { text-align: center; margin-bottom: 56px; }
+    .section-title h2 { font-size: 2rem; font-weight: 700; margin-bottom: 10px; }
+    .section-title p { color: var(--text-light); font-size: 1.05rem; }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: box-shadow .25s, transform .2s;
+    }
+    .feature-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.07); transform: translateY(-3px); }
+    .feature-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 18px;
+      background: #eef2ff; color: var(--primary);
+    }
+    .feature-card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 8px; }
+    .feature-card p { color: var(--text-light); font-size: .95rem; }
+
+    /* ========== Stats ========== */
+    .stats { padding: 64px 0; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px; text-align: center;
+    }
+    .stat-item h3 { font-size: 2.4rem; font-weight: 800; color: var(--primary); }
+    .stat-item p { color: var(--text-light); margin-top: 4px; font-size: .95rem; }
+
+    /* ========== CTA ========== */
+    .cta {
+      padding: 80px 0;
+      background: var(--primary);
+      color: #fff;
+      text-align: center;
+    }
+    .cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 14px; }
+    .cta p { opacity: .85; max-width: 500px; margin: 0 auto 32px; font-size: 1.05rem; }
+    .cta .btn-primary { background: #fff; color: var(--primary); }
+    .cta .btn-primary:hover { background: #f0f0f0; }
+
+    /* ========== Footer ========== */
+    .footer {
+      padding: 48px 0 28px;
+      background: var(--text);
+      color: #94a3b8;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer h4 { color: #fff; font-size: .95rem; margin-bottom: 16px; }
+    .footer p, .footer a { font-size: .9rem; }
+    .footer a { color: #94a3b8; transition: color .2s; }
+    .footer a:hover { color: #fff; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-bottom {
+      border-top: 1px solid #334155;
+      padding-top: 24px;
+      text-align: center;
+      font-size: .85rem;
+    }
+
+    /* ========== Responsive ========== */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2rem; }
+      .navbar nav { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <header class="navbar">
+    <div class="container">
+      <a href="#" class="logo">BrandName</a>
+      <nav>
+        <a href="#features">功能</a>
+        <a href="#stats">数据</a>
+        <a href="#cta">方案</a>
+        <a href="#">文档</a>
+      </nav>
+      <a href="#cta" class="btn btn-primary">免费试用</a>
+    </div>
+  </header>
+
+  <!-- Hero 区域 -->
+  <section class="hero">
+    <div class="container">
+      <h1>用<span>更聪明</span>的方式<br>构建你的产品</h1>
+      <p>一站式解决方案，帮助你快速搭建、部署和扩展你的业务。简单、高效、值得信赖。</p>
+      <div class="actions">
+        <a href="#cta" class="btn btn-primary">立即开始</a>
+        <a href="#features" class="btn btn-outline">了解更多</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 功能介绍 -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>为什么选择我们</h2>
+        <p>强大的功能，简洁的体验</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#9889;</div>
+          <h3>极速性能</h3>
+          <p>基于最新的底层技术，确保每一次操作都能在毫秒级响应，带来丝滑体验。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128274;</div>
+          <h3>安全可靠</h3>
+          <p>企业级安全架构，端到端加密传输，全方位保障你的数据隐私与业务安全。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128640;</div>
+          <h3>快速部署</h3>
+          <p>开箱即用的模板与自动化工具，几分钟内即可完成部署，零运维负担。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127912;</div>
+          <h3>精美设计</h3>
+          <p>精心打磨的 UI 组件和设计系统，让你的产品从一开始就拥有专业外观。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128200;</div>
+          <h3>数据分析</h3>
+          <p>内置强大的分析仪表盘，实时追踪关键指标，用数据驱动业务增长。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#129309;</div>
+          <h3>7×24 支持</h3>
+          <p>专业技术团队全天候在线，快速响应你的每一个问题，让你无后顾之忧。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据统计 -->
+  <section class="stats" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <h3>10,000+</h3>
+          <p>活跃用户</p>
+        </div>
+        <div class="stat-item">
+          <h3>99.9%</h3>
+          <p>可用性保证</p>
+        </div>
+        <div class="stat-item">
+          <h3>50+</h3>
+          <p>国家与地区</p>
+        </div>
+        <div class="stat-item">
+          <h3>200+</h3>
+          <p>企业客户</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 行动号召 -->
+  <section class="cta" id="cta">
+    <div class="container">
+      <h2>准备好开始了吗？</h2>
+      <p>立即注册，享受 14 天免费试用，无需绑定信用卡。</p>
+      <a href="#" class="btn btn-primary">免费开始使用</a>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4>BrandName</h4>
+          <p>致力于为全球企业提供最优质的数字化解决方案，让技术赋能每一个梦想。</p>
+        </div>
+        <div>
+          <h4>产品</h4>
+          <ul class="footer-links">
+            <li><a href="#">功能介绍</a></li>
+            <li><a href="#">定价方案</a></li>
+            <li><a href="#">更新日志</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>资源</h4>
+          <ul class="footer-links">
+            <li><a href="#">帮助文档</a></li>
+            <li><a href="#">开发者 API</a></li>
+            <li><a href="#">社区论坛</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>公司</h4>
+          <ul class="footer-links">
+            <li><a href="#">关于我们</a></li>
+            <li><a href="#">加入团队</a></li>
+            <li><a href="#">联系我们</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 BrandName. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

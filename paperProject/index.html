@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>刮刮乐壁纸游戏</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <div class="game-wrapper">
+    <!-- 底层：壁纸图片 -->
+    <canvas id="imageCanvas"></canvas>
+    <!-- 顶层：刮刮乐涂层 -->
+    <canvas id="scratchCanvas"></canvas>
+
+    <!-- 重新覆盖按钮 -->
+    <button id="resetBtn" title="重新覆盖并换下一张">↻</button>
+
+    <!-- 图片计数 -->
+    <div class="image-counter" id="counter">第 1 张 / 共 8 张</div>
+
+    <!-- 提示文字 -->
+    <div class="progress-hint" id="hint">用鼠标或手指刮开涂层</div>
+  </div>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>
